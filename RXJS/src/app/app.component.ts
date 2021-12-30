@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable, Subscriber } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -45,12 +46,91 @@ export class AppComponent implements OnInit {
     })
   }
 
+  minhaObservable(nome: string): Observable<string> {
+    return new Observable(subscriber => {
+
+      if (nome === "João") {
+        subscriber.next("Olá!");
+        subscriber.next("Olá Denovo!");
+        setTimeout(() => {
+          subscriber.next("Olá Denovo Com Delay!")
+        }, 5000);
+        subscriber.complete();
+      } else {
+        subscriber.error("Erro Interno!");
+      }
+
+    })
+  }
+  usuarioObservable(nome: string, email: string): Observable<Usuario> {
+    return new Observable(subscriber => {
+      if (nome === "Admin") {
+
+        let usuario = new Usuario(nome, email)
+
+        setTimeout(() => {
+          subscriber.next(usuario)
+        }, 1000);
+        setTimeout(() => {
+          subscriber.next(usuario)
+        }, 2000);
+        setTimeout(() => {
+          subscriber.next(usuario)
+        }, 3000);
+        setTimeout(() => {
+          subscriber.next(usuario)
+        }, 4000);
+        setTimeout(() => {
+          subscriber.complete()
+        }, 5000);
+
+
+      } else {
+        subscriber.error("Erro Interno!");
+      }
+
+    })
+  }
+
+
+
   ngOnInit(): void {
     /* this.minhaPromise("João")
       .then(result => console.log(result)) */
 
     /* this.minhaPromise("José")
       .then(result => console.log(result))
-      .catch(erro => console.log(erro)) */
+      .catch(erro => console.log(erro)); */
+
+    /* this.minhaObservable("João")
+      .subscribe({
+        next: (v) => console.log(v),
+        error: (e) => console.log(e),
+        complete: () => console.log("Fim")
+      }); */
+
+      const observer = {
+        next: (valor: any) => console.log("Next: ", valor),
+        erro: (erro: any) => console.log("Erro: ", erro),
+        complete: () => console.log("Fim")
+      }
+
+    const obs = this.usuarioObservable("Admin", "joao.girardi@pontosys.com");
+    const subs = obs.subscribe(observer);
+
+    setTimeout(() => {
+      subs.unsubscribe();
+      console.log("Conexão Fechada => " + subs.closed)
+    }, 3500);
   }
+}
+export class Usuario {
+
+  constructor(nome: string, email: string) {
+    this.nome = nome;
+    this.email = email;
+  }
+
+  nome : string;
+  email: string;
 }
