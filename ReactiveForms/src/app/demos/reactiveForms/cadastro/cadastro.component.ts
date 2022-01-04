@@ -14,6 +14,7 @@ import { Observable, fromEvent, merge } from 'rxjs';
 })
 export class CadastroComponent implements OnInit, AfterViewInit {
   
+  //Utilizado para obter uma coleção de itens do formulário
   @ViewChildren(FormControlName, { read: ElementRef }) formInputElements: ElementRef[];
 
   cadastroForm: FormGroup;
@@ -43,11 +44,11 @@ export class CadastroComponent implements OnInit, AfterViewInit {
       },
       senha: {
         required: 'Informe a senha',
-        rangeLength: 'A senha deve possuir entre 6 e 15 caracteres'
+        rangeLength: 'A senha deve possuir entre 8 e 32 caracteres'
       },
       senhaConfirmacao: {
         required: 'Informe a senha novamente',
-        rangeLength: 'A senha deve possuir entre 6 e 15 caracteres',
+        rangeLength: 'A senha deve possuir entre 8 e 32 caracteres',
         equalTo: 'As senhas não conferem'
       }
     };
@@ -56,8 +57,8 @@ export class CadastroComponent implements OnInit, AfterViewInit {
    }
 
   ngOnInit() {
-    let senha = new FormControl('', [Validators.required, CustomValidators.rangeLength([6,15])]);
-    let senhaConfirm = new FormControl('', [Validators.required, CustomValidators.rangeLength([6,15]), CustomValidators.equalTo(senha)]);
+    let senha = new FormControl('', [Validators.required, CustomValidators.rangeLength([8,32])]);
+    let senhaConfirm = new FormControl('', [Validators.required, CustomValidators.rangeLength([8,32]), CustomValidators.equalTo(senha)]);
 
     this.cadastroForm = this.fb.group({
       nome: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(150)]],
