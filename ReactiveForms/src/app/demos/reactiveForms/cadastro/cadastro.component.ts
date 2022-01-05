@@ -26,6 +26,8 @@ export class CadastroComponent implements OnInit, AfterViewInit {
   genericValidator: GenericValidator;
   displayMessage: DisplayMessage = {};
 
+  mudancasSalvas : boolean = true;
+
   constructor(private fb: FormBuilder) {
     
     this.validationMessages = {
@@ -75,6 +77,7 @@ export class CadastroComponent implements OnInit, AfterViewInit {
 
     merge(...controlBlurs).subscribe(() => {
       this.displayMessage = this.genericValidator.processarMensagens(this.cadastroForm);
+      this.mudancasSalvas = false;
     });
   }
 
@@ -82,6 +85,7 @@ export class CadastroComponent implements OnInit, AfterViewInit {
     if (this.cadastroForm.dirty && this.cadastroForm.valid) {
       this.usuario = Object.assign({}, this.usuario, this.cadastroForm.value);
       this.formResult = JSON.stringify(this.cadastroForm.value);
+      this.mudancasSalvas = true;
     }
     else {
       this.formResult = "Não submeteu!!!"

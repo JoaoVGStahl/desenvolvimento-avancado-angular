@@ -15,6 +15,7 @@ import { NavegacaoModule } from './navegacao/navegacao.module';
 import { ProdutoAppComponent } from './demos/arquitetura-componentes/produto.app.component';
 import { AdminModule } from './admin/admin.module';
 import { AuthGuard } from './services/app.guard';
+import { CadastroGuard } from './services/cadastro.guard';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { AuthGuard } from './services/app.guard';
     AppRoutingModule
   ],
   providers: [
-    AuthGuard
+    AuthGuard,
+    CadastroGuard
     // * Url Base de navegação, porem inutiliza sub rotas => /produtos/editar/:id
     // * {provide: APP_BASE_HREF, useValue: '/'}
   ],
