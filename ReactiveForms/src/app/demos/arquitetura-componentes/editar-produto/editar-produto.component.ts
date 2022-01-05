@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Produto } from '../models/produto';
 import { ProdutoService } from '../services/produto.service';
 
@@ -10,7 +10,11 @@ import { ProdutoService } from '../services/produto.service';
 })
 export class EditarProdutoComponent implements OnInit {
 
-  constructor(private route: ActivatedRoute, private _produtoService: ProdutoService) { }
+  constructor(
+    private route: ActivatedRoute, 
+    private _produtoService: ProdutoService,
+    private router: Router
+    ) { }
 
   produto : Produto;
 
@@ -25,7 +29,18 @@ export class EditarProdutoComponent implements OnInit {
     );
   }
   salvar(){
+    // TODO Fazer comunicação com Backend
+
     alert('Salvo com sucesso!');
+    
+    // * Navegação de forma imperativa
+    this.router.navigate(['/produtos']);
+    
+    /* 
+    * Deste modo o router acaba recarregando a página ao redirecionar o client para lá
+    * Seria como o usuário digitar a rota no navegador e pressionar ENTER
+    * this.router.navigateByUrl('/produtos'); 
+    */
   }
 
 }
