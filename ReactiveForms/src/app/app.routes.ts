@@ -13,7 +13,7 @@ const rootRouterConfig: Routes = [
     {path: 'produtos', loadChildren: () => import('./demos/arquitetura-componentes/produtos.module').then(m => m.ProdutoModule)},
 
 
-    // ! Esta rota deverá sem sempre a ultima! pois caso o module não encontre a referência irá redirecionar para o 404
+    // ! Esta rota deverá sem sempre a ultima! pois caso o module não encontre a rota irá redirecionar para o 404
     {path: '**', component: NotFoundComponent}
 ];
 
