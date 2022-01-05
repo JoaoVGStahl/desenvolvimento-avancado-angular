@@ -50,8 +50,16 @@ export class ProdutoService {
                 imagem: 'headset.jpg'
             }];
     }
-    obterTodos() : Produto[]{
-        return this.produtos;
+    obterTodos(estado: string) : Produto[]{
+
+        switch (estado) {
+            case 'ativos':
+                return this.produtos.filter(p => p.ativo);
+            case 'inativos':
+                return this.produtos.filter(p => p.ativo == false);     
+            default:
+                return this.produtos;
+        }
     }
 
     obterPorId(id : number) : Produto{
