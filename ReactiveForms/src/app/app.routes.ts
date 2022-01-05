@@ -4,26 +4,27 @@ import { SobreComponent } from './institucional/sobre/sobre.component';
 import { CadastroComponent } from './demos/reactiveForms/cadastro/cadastro.component';
 import { NgModule } from '@angular/core';
 import { NotFoundComponent } from './navegacao/not-found/not-found.component';
+import { AuthGuard } from './services/app.guard';
 
 const rootRouterConfig: Routes = [
-    { path: '', redirectTo: '/home', pathMatch: 'full'},
-    { path: 'home', component: HomeComponent},
+    { path: '', redirectTo: '/home', pathMatch: 'full' },
+    { path: 'home', component: HomeComponent },
     { path: 'sobre', component: SobreComponent },
     { path: 'cadastro', component: CadastroComponent },
-    {path: 'produtos', loadChildren: () => import('./demos/arquitetura-componentes/produtos.module').then(m => m.ProdutoModule)},
-
+    { path: 'produtos', loadChildren: () => import('./demos/arquitetura-componentes/produtos.module').then(m => m.ProdutoModule) },
+    { path: 'admin', loadChildren: ()=> import('./admin/admin.module').then(m => m.AdminModule), canLoad: [AuthGuard], canActivate: [AuthGuard]},
 
     // ! Esta rota deverá sem sempre a ultima! pois caso o module não encontre a rota irá redirecionar para o 404
-    {path: '**', component: NotFoundComponent}
+    { path: '**', component: NotFoundComponent }
 ];
 
 @NgModule({
-    imports :[
-        RouterModule.forRoot(rootRouterConfig, {enableTracing: false})
+    imports: [
+        RouterModule.forRoot(rootRouterConfig, { enableTracing: false })
     ],
-    exports :[
+    exports: [
         RouterModule
     ]
 })
 
-export class AppRoutingModule{}
+export class AppRoutingModule { }

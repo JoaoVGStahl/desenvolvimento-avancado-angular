@@ -12,8 +12,9 @@ import { SobreComponent } from './institucional/sobre/sobre.component';
 import { AppRoutingModule } from './app.routes';
 import { CadastroComponent } from './demos/reactiveForms/cadastro/cadastro.component';
 import { NavegacaoModule } from './navegacao/navegacao.module';
-import { ProdutosDashboardComponent } from './demos/arquitetura-componentes/produtos-dashboard/produtos-dashboard.component';
 import { ProdutoAppComponent } from './demos/arquitetura-componentes/produto.app.component';
+import { AdminModule } from './admin/admin.module';
+import { AuthGuard } from './services/app.guard';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { ProdutoAppComponent } from './demos/arquitetura-componentes/produto.app
     AppRoutingModule
   ],
   providers: [
+    AuthGuard
     // * Url Base de navegação, porem inutiliza sub rotas => /produtos/editar/:id
     // * {provide: APP_BASE_HREF, useValue: '/'}
   ],
