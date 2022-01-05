@@ -13,9 +13,11 @@ import { AppRoutingModule } from './app.routes';
 import { CadastroComponent } from './demos/reactiveForms/cadastro/cadastro.component';
 import { NavegacaoModule } from './navegacao/navegacao.module';
 import { ProdutosDashboardComponent } from './demos/arquitetura-componentes/produtos-dashboard/produtos-dashboard.component';
+import { ProdutoAppComponent } from './demos/arquitetura-componentes/produto.app.component';
 
 @NgModule({
   declarations: [
+    ProdutoAppComponent,
     AppComponent,
     SobreComponent,
     CadastroComponent
@@ -31,7 +33,8 @@ import { ProdutosDashboardComponent } from './demos/arquitetura-componentes/prod
     AppRoutingModule
   ],
   providers: [
-    {provide: APP_BASE_HREF, useValue: '/'}
+    // * Url Base de navegação, porem inutiliza sub rotas => /produtos/editar/:id
+    // * {provide: APP_BASE_HREF, useValue: '/'}
   ],
   bootstrap: [AppComponent]
 })
