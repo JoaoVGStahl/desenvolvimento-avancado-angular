@@ -18,9 +18,11 @@ const produtoRouterConfig: Routes = [
                 resolve: { produtos: ProdutosResolve },
                 data: { teste: 'informação' }
             },
-            { path: 'editar/:id', component: EditarProdutoComponent }
+            { path: ':estado/editar/:id', component: EditarProdutoComponent }
         ]
+        
     }
+    
 ];
 @NgModule({
     imports: [

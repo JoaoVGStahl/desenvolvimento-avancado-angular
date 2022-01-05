@@ -1,7 +1,10 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { APP_BASE_HREF } from '@angular/common';
 import { FormsModule, ReactiveFormsModule }   from '@angular/forms';
+
+import { registerLocaleData } from "@angular/common";
+import localePT from '@angular/common/locales/pt';
+registerLocaleData(localePT);
 
 import { NgBrazil } from 'ng-brazil'
 import { TextMask } from 'ng-brazil';
@@ -13,16 +16,17 @@ import { AppRoutingModule } from './app.routes';
 import { CadastroComponent } from './demos/reactiveForms/cadastro/cadastro.component';
 import { NavegacaoModule } from './navegacao/navegacao.module';
 import { ProdutoAppComponent } from './demos/arquitetura-componentes/produto.app.component';
-import { AdminModule } from './admin/admin.module';
 import { AuthGuard } from './services/app.guard';
 import { CadastroGuard } from './services/cadastro.guard';
+import { FilmesComponent } from './demos/pipes/filmes/filmes.component';
 
 @NgModule({
   declarations: [
     ProdutoAppComponent,
     AppComponent,
     SobreComponent,
-    CadastroComponent
+    CadastroComponent,
+    FilmesComponent
   ],
   imports: [
     BrowserModule,
