@@ -43,3 +43,7 @@ export class BarServicesMock {
         return 'Refeições Mock';
     }
 }
+
+export abstract class BebidaService {
+    obterBebidas: () => string
+}

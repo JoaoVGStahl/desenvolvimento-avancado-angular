@@ -17,6 +17,14 @@
         Bebidas 1: {{barBebida1}}
     </div>
     <div>
+        Bebidas 2: {{barBebida2}}
+    </div>
+    <div>
         Dados Unidade: {{dadosUnidade}}
     </div>
+    <h2>Progress: {{progress}}%</h2>
+    <p *ngIf="progress >= 100">Done processing {{label}} of Angular zone!</p>
+
+    <button class="btn btn-success" (click)="processWithinAngularZone()">Process within Angular zone</button> &nbsp;
+    <button class="btn btn-danger" (click)="processOutsideOfAngularZone()">Process outside of Angular zone</button>
 </div>
