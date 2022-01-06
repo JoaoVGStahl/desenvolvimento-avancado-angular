@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-import { FormsModule, ReactiveFormsModule }   from '@angular/forms';
+import { NgModule, Provider } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { registerLocaleData } from "@angular/common";
 import localePT from '@angular/common/locales/pt';
@@ -19,6 +19,15 @@ import { ProdutoAppComponent } from './demos/arquitetura-componentes/produto.app
 import { AuthGuard } from './services/app.guard';
 import { CadastroGuard } from './services/cadastro.guard';
 import { FilmesComponent } from './demos/pipes/filmes/filmes.component';
+import { FileSizePipe } from './demos/pipes/filmes/filesize.pipe';
+import { ImageFormaterPipe } from './demos/pipes/filmes/image.pipe';
+import { BarModule } from './demos/bar-di-zones/bar.module';
+import { BarServices } from './demos/bar-di-zones/bar.service';
+
+// * Const com todos os providers de um module, melhorando a organização
+export const BAR_PROVIDERS: Provider[] = [
+  BarServices
+];
 
 @NgModule({
   declarations: [
@@ -26,7 +35,10 @@ import { FilmesComponent } from './demos/pipes/filmes/filmes.component';
     AppComponent,
     SobreComponent,
     CadastroComponent,
-    FilmesComponent
+    FilmesComponent,
+    FileSizePipe,
+    ImageFormaterPipe,
+    
   ],
   imports: [
     BrowserModule,
@@ -36,11 +48,13 @@ import { FilmesComponent } from './demos/pipes/filmes/filmes.component';
     TextMask.TextMaskModule,
     NgBrazil,
     CustomFormsModule,
-    AppRoutingModule
+    AppRoutingModule,
+    BarModule
   ],
   providers: [
     AuthGuard,
-    CadastroGuard
+    CadastroGuard,
+    // * BAR_PROVIDERS
     // * Url Base de navegação, porem inutiliza sub rotas => /produtos/editar/:id
     // * {provide: APP_BASE_HREF, useValue: '/'}
   ],
