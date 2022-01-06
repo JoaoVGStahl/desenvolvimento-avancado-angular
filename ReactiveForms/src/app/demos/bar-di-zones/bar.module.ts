@@ -10,6 +10,9 @@ import { BarUnidadeconfig, BAR_UNIDADE_CONFIG } from "./bar.config";
     declarations: [
         BarComponent
     ],
+    providers: [
+
+    ],
     exports: [
         BarComponent
     ]

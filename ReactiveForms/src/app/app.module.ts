@@ -23,6 +23,7 @@ import { FileSizePipe } from './demos/pipes/filmes/filesize.pipe';
 import { ImageFormaterPipe } from './demos/pipes/filmes/image.pipe';
 import { BarModule } from './demos/bar-di-zones/bar.module';
 import { BarServices } from './demos/bar-di-zones/bar.service';
+import { HttpClientModule } from '@angular/common/http';
 
 // * Const com todos os providers de um module, melhorando a organização
 export const BAR_PROVIDERS: Provider[] = [
@@ -49,6 +50,7 @@ export const BAR_PROVIDERS: Provider[] = [
     NgBrazil,
     CustomFormsModule,
     AppRoutingModule,
+    HttpClientModule,
     BarModule.forRoot({
       unidadeId: 367,
       unidadeToken: '596fd4ec39e449e0b862965f25d604d1'
