@@ -24,6 +24,7 @@ import { ImageFormaterPipe } from './demos/pipes/filmes/image.pipe';
 import { BarModule } from './demos/bar-di-zones/bar.module';
 import { BarServices } from './demos/bar-di-zones/bar.service';
 import { HttpClientModule } from '@angular/common/http';
+import { TodoModule } from './demos/todo-list/todo.module';
 
 // * Const com todos os providers de um module, melhorando a organização
 export const BAR_PROVIDERS: Provider[] = [
@@ -54,7 +55,8 @@ export const BAR_PROVIDERS: Provider[] = [
     BarModule.forRoot({
       unidadeId: 367,
       unidadeToken: '596fd4ec39e449e0b862965f25d604d1'
-    })
+    }),
+    TodoModule
   ],
   providers: [
     AuthGuard,
