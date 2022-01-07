@@ -1,51 +1,52 @@
 {
-    "todolist": [{
-            "id": 1,
-            "nome": "Apresentação Curso Angular",
-            "finalizado": false,
-            "iniciado": true
-        },
-        {
-            "id": 2,
-            "nome": "Curso Avançado Angular",
-            "finalizado": true,
-            "iniciado": false
-        },
-        {
-            "id": 3,
-            "nome": "Dominando EntityFramework",
-            "finalizado": false,
-            "iniciado": false
-        },
-        {
-            "id": 4,
-            "nome": "Fundamentos de Arquitetura de Software",
-            "finalizado": false,
-            "iniciado": false
-        },
-        {
-            "id": 5,
-            "nome": "Modelagem de Domínios Ricos",
-            "finalizado": false,
-            "iniciado": true
-        },
-        {
-            "id": 6,
-            "nome": "Dominando os Testes de Software",
-            "finalizado": false,
-            "iniciado": true
-        },
-        {
-            "id": 7,
-            "nome": "ASP.NET Core Enterprise Applications",
-            "finalizado": true,
-            "iniciado": false
-        },
-        {
-            "id": 8,
-            "nome": "Ponto.Sys Sistemas",
-            "finalizado": false,
-            "iniciado": false
-        }
-    ]
+  "todolist": [
+    {
+      "id": 1,
+      "nome": "Apresentação Curso Angular",
+      "finalizado": false,
+      "iniciado": false
+    },
+    {
+      "id": 2,
+      "nome": "Curso Avançado Angular",
+      "finalizado": false,
+      "iniciado": false
+    },
+    {
+      "id": 3,
+      "nome": "Dominando EntityFramework",
+      "finalizado": false,
+      "iniciado": false
+    },
+    {
+      "id": 4,
+      "nome": "Fundamentos de Arquitetura de Software",
+      "finalizado": false,
+      "iniciado": false
+    },
+    {
+      "id": 5,
+      "nome": "Modelagem de Domínios Ricos",
+      "finalizado": false,
+      "iniciado": false
+    },
+    {
+      "id": 6,
+      "nome": "Dominando os Testes de Software",
+      "finalizado": false,
+      "iniciado": false
+    },
+    {
+      "id": 7,
+      "nome": "ASP.NET Core Enterprise Applications",
+      "finalizado": false,
+      "iniciado": false
+    },
+    {
+      "id": 8,
+      "nome": "Ponto.Sys Sistemas",
+      "finalizado": false,
+      "iniciado": false
+    }
+  ]
 }
