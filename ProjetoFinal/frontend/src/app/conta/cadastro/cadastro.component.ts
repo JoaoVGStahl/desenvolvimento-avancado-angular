@@ -5,6 +5,7 @@ import { Usuario } from '../models/usuario';
 import { ContaService } from '../services/conta.service';
 import { CustomValidators } from 'ngx-custom-validators';
 import { fromEvent, merge, Observable } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-cadastro',
@@ -25,7 +26,8 @@ export class CadastroComponent implements OnInit, AfterViewInit {
 
   constructor(
     private fb: FormBuilder,
-    private contaService: ContaService) {
+    private contaService: ContaService,
+    private router: Router) {
     this.validationMessage = {
       email: {
         required: 'Informe o Email',
@@ -69,17 +71,22 @@ export class CadastroComponent implements OnInit, AfterViewInit {
 
       this.contaService.cadastrarUsuario(this.usuario)
         .subscribe(
-          successo => {this.processarSucesso(successo)},
-          falha => {this.processarFalha(falha)}
+          next => {this.processarSucesso(next)},
+          error => {this.processarFalha(error)}
         );
     }
   }
 
   processarSucesso(response : any){
-    
-  }
-  processarFalha(response : any){
+    this.cadastroForm.reset();
+    this.errors = [];
 
+    this.contaService.LocalStorage.salvarDadosLocaisUsuario(response);
+
+    this.router.navigate(['/home']);
+  }
+  processarFalha(fail : any){
+    this.errors = fail.error.errors;
   }
 
 }

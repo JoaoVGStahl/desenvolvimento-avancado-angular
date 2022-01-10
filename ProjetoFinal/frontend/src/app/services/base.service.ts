@@ -1,7 +1,10 @@
 import { HttpErrorResponse, HttpHeaders } from "@angular/common/http"
 import { throwError } from "rxjs";
+import { LocalStorageUtils } from "../utils/localstorage";
 
 export abstract class BaseService {
+
+    public LocalStorage = new LocalStorageUtils();
 
     protected urlServiceV1: string = "https://minhaapi.azurewebsites.net/api/v1"
 
@@ -21,7 +24,7 @@ export abstract class BaseService {
         let customError: string [] = [];
 
         if(response instanceof HttpErrorResponse){
-            if(response.statusText ==="Unknowm Error"){
+            if(response.statusText ==="Unknown Error"){
                 customError.push("Ocorreu um Erro desconhecido");
                 response.error.errors = customError;
             }
