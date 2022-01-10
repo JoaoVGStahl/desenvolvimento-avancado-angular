@@ -14,28 +14,29 @@ describe('Testes do formulario de cadastro', () => {
   });
 
   it('deve preencher formulário de cadastro com sucesso', () => {
-    page.campoNome.sendKeys('Eduardo Pires');
-    page.campoCPF.sendKeys('30390600822');
-    page.campoEmail.sendKeys('teste@teste.com');
+    page.campoNome.sendKeys('João Girardi');
+    page.campoCPF.sendKeys('48563274880');
+    page.campoEmail.sendKeys('joao.girardi@pontosys.com');
     page.campoSenha.sendKeys('Teste@123');
     page.campoSenhaConfirmacao.sendKeys('Teste@123');
 
     page.botaoRegistrar.click();
-    page.esperar(1000);
+    page.esperar(2000);
 
-    expect(page.obterResultadoCadastro()).toContain('"nome":"Eduardo Pires"');
+    expect(page.obterResultadoCadastro()).toContain('"nome":"João Girardi"');
   });
 
   it('deve validar senhas diferentes', () => {
     page.iniciarNavegacao();
 
-    page.campoNome.sendKeys('Eduardo Pires');
-    page.campoCPF.sendKeys('30390600822');
-    page.campoEmail.sendKeys('teste@teste.com');
+    page.campoNome.sendKeys('João Girardi');
+    page.campoCPF.sendKeys('48563274880');
+    page.campoEmail.sendKeys('joao.girardi@pontosys.com');
     page.campoSenha.sendKeys('Teste@2123');
     page.campoSenhaConfirmacao.sendKeys('Teste@123');
 
     page.campoSenha.click();
+    page.esperar(2000);
 
     expect(page.obterErroSenha()).toContain('As senhas não conferem');
   });

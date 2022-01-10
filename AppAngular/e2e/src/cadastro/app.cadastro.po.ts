@@ -19,6 +19,7 @@ export class AppCadastroPage extends AppBasePage {
   }
 
   obterTituloCadastro() {
+    // * tb é possivel localizar por id
     return this.obterElementoXpath('/html/body/app-root/app-cadastro/div/h4').getText();
   }
 
