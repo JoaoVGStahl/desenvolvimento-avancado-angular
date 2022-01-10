@@ -55,4 +55,14 @@ describe('Produto Service', () =>{
 
         expect(result).toEqual(produtosMock);
     })
+
+    it('Deve retorna apenas um produto', () => {
+        spyOn(service, 'obterPorId').and.returnValue(produtoMock);
+
+        let result = service.obterPorId(2);
+
+        expect(result).toEqual(produtoMock);
+        
+        expect(result.id).toEqual(2)
+    })
 });
