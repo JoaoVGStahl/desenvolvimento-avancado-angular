@@ -1,0 +1,23 @@
+<div class="task-list">
+    <h3>
+        <ng-content></ng-content>
+    </h3>
+
+    <table class="table table-striped">
+        <tbody>
+            <tr *ngFor="let item of list; index as i">
+                <td class="text-left">
+                    <span>{{ item.nome }}</span>
+                </td>
+                <td class="text-right">
+                    <img class="task-list-icon" *ngIf="item.finalizado && !item.iniciado" src="/assets/retroceder_ativo.png" (click)="toggleItem(i, 'retomar')">
+                    <img class="task-list-icon" *ngIf="!item.finalizado && item.iniciado" src="/assets/retroceder_ativo.png" (click)="toggleItem(i, 'cancelar')">
+                    <img class="task-list-icon" *ngIf="!item.finalizado && !item.iniciado" src="/assets/iniciar_ativo.png" (click)="toggleItem(i, 'iniciar')">
+                    <img class="task-list-icon" *ngIf="!item.finalizado && item.iniciado" src="/assets/parar_ativo.png" (click)="toggleItem(i, 'finalizar')">
+                    <img class="task-list-icon" src="/assets/lixo.png" (click)="excluir(item.id)">
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+</div>

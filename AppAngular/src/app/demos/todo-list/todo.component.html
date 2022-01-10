@@ -1,0 +1,22 @@
+<div class="container main-container">
+
+    <form novalidate (ngSubmit)="adicionarTarefa()" [formGroup]="tarefaForm">
+
+        <div class="row text-left">
+            <div style="padding-left: 15px;" class="form-group">
+                <input class="form-control" style="width: 350px;" id="nome" placeholder="Nova tarefa" formControlName="nome" type="text">
+            </div>
+            <div style="padding-left: 30px;" class="form-group">
+                <button class="btn btn-success" id="Registrar" type="submit">Registrar</button>
+            </div>
+        </div>
+
+    </form>
+    <hr>
+    <div class="row text-center">
+        <tasks class="col-md-4"></tasks>
+        <tasks-iniciadas class="col-md-4"></tasks-iniciadas>
+        <tasks-finalizadas class="col-md-4"></tasks-finalizadas>
+    </div>
+
+</div>
