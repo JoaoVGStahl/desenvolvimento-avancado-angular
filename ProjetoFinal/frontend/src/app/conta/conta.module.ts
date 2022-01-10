@@ -9,6 +9,7 @@ import { LoginComponent } from './login/login.component';
 import { ContaAppComponent } from './conta.app.component';
 
 import { ContaRoutingModule } from './conta.routes';
+import { ContaService } from './services/conta.service';
 
 
 
@@ -26,6 +27,9 @@ import { ContaRoutingModule } from './conta.routes';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule
+  ],
+  providers: [
+    ContaService
   ]
 })
 export class ContaModule { }
