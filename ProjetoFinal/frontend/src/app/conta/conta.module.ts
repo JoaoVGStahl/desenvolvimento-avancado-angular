@@ -10,6 +10,7 @@ import { ContaAppComponent } from './conta.app.component';
 
 import { ContaRoutingModule } from './conta.routes';
 import { ContaService } from './services/conta.service';
+import { ContaGuard } from './services/conta.guard';
 
 
 
@@ -29,7 +30,8 @@ import { ContaService } from './services/conta.service';
     HttpClientModule
   ],
   providers: [
-    ContaService
+    ContaService,
+    ContaGuard
   ]
 })
 export class ContaModule { }
