@@ -5,10 +5,14 @@ import { Router } from '@angular/router';
 import { Observable, fromEvent, merge } from 'rxjs';
 
 import { ToastrService } from 'ngx-toastr';
+import { NgBrazilValidators } from 'ng-brazil';
+import { utilsBr} from 'js-brasil'
 
 import { ValidationMessages, GenericValidator, DisplayMessage } from 'src/app/utils/generic-form-validation';
 import { Fornecedor } from '../models/fornecedor';
 import { FornecedorService } from '../services/fornecedor.service';
+
+
 
 @Component({
   selector: 'app-novo',
@@ -26,6 +30,7 @@ export class NovoComponent implements OnInit {
   genericValidator: GenericValidator;
   displayMessage: DisplayMessage = {};
 
+  MASK = utilsBr.MASKS;
   formResult: string = '';
 
   mudancasNaoSalvas: boolean;
@@ -41,6 +46,7 @@ export class NovoComponent implements OnInit {
       },
       documento: {
         required: 'Informe o Documento',
+        cnpj: 'CNPJ em formato inválido'
       },
       logradouro: {
         required: 'Informe o Logradouro',
@@ -69,7 +75,7 @@ export class NovoComponent implements OnInit {
 
     this.fornecedorForm = this.fb.group({
       nome: ['', [Validators.required]],
-      documento: ['', [Validators.required]],
+      documento: ['', [Validators.required, NgBrazilValidators.cnpj]],
       ativo: ['', [Validators.required]],
       tipoFornecedor: ['', [Validators.required]],
       endereco: this.fb.group({
