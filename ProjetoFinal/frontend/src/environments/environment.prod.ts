@@ -1,3 +1,4 @@
 export const environment = {
-  production: true
+  production: true,
+  apiUrv1 : 'https://minhaapi.azurewebsites.net/api/v1'
 };

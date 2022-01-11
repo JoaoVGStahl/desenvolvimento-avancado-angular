@@ -1,12 +1,13 @@
 import { HttpErrorResponse, HttpHeaders } from "@angular/common/http"
 import { throwError } from "rxjs";
+import { environment } from "src/environments/environment";
 import { LocalStorageUtils } from "../utils/localstorage";
 
 export abstract class BaseService {
 
     public LocalStorage = new LocalStorageUtils();
 
-    protected urlServiceV1: string = "https://minhaapi.azurewebsites.net/api/v1"
+    protected urlServiceV1: string = environment.apiUrv1
 
     protected ObterHeaderJson(){
         return {
