@@ -9,6 +9,7 @@ const routes: Routes = [
   { path: 'conta', loadChildren: () => import('./conta/conta.module').then(m => m.ContaModule) },
 
   // ! Exceção 404
+
   { path: 'não-encontrado', component: NotFoundComponent },
   { path: '**', component: NotFoundComponent }
 ];
