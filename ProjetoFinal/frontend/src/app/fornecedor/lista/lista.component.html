@@ -1,0 +1,41 @@
+<div class="container main-container">
+
+    <h1>Lista de Fornecedores</h1>
+
+    <p>
+        <a class="btn btn-info" [routerLink]="['/fornecedor/adicionar-novo']">Novo Fornecedor</a>
+    </p>
+
+    <table class="table table-hover">
+        <thead class="thead-dark">
+            <tr>
+                <th>Nome</th>
+                <th>Documento</th>
+                <th>Ativo?</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tr *ngFor="let fornecedor of fornecedores">
+            <td>
+                {{ fornecedor.nome }}
+            </td>
+            <td>
+                {{fornecedor.documento }}
+            </td>
+            <td>
+                <input [checked]="fornecedor.ativo" class="check-box" disabled="disabled" type="checkbox">
+            </td>
+            <td class="text-right">
+                <a class="btn btn-info" [routerLink]="['/fornecedor/detalhes',fornecedor.id]">
+                    <span class="fa fa-search"></span>
+                </a>&nbsp;
+                <a class="btn btn-warning" [routerLink]="['/fornecedor/editar',fornecedor.id]">
+                    <span class="fa fa-pencil-alt"></span>
+                </a>&nbsp;
+                <a class="btn btn-danger" [routerLink]="['/fornecedor/excluir',fornecedor.id]">
+                    <span class="fa fa-trash"></span>
+                </a>
+            </td>
+        </tr>
+    </table>
+</div>

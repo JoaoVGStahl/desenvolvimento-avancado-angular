@@ -1,0 +1,135 @@
+<div class="container main-container">
+    <h1>Editar Fornecedor</h1>
+    <hr>
+    <form novalidate="novalidate" (ngSubmit)="editarFornecedor()" [formGroup]="fornecedorForm">
+
+        <div class="alert alert-danger" *ngIf="errors.length > 0">
+            <h3 id="msgRetorno">Opa! Alguma coisa não deu certo:</h3>
+            <ul>
+                <li *ngFor="let error of errors">{{ error }}</li>
+            </ul>
+        </div>
+
+        <input type="hidden" id="id" name="id" value="">
+        <input type="hidden" id="enderecoId" name="enderecoId" value="">
+
+        <div class="form-row">
+            <div class="form-group col-md-6">
+
+                <div>
+                    <label class="control-label">Nome</label>
+                    <div>
+                        <input class="form-control" id="nome" type="text" placeholder="Nome (requerido)" formControlName="nome" [ngClass]="{'is-invalid': displayMessage.nome }" />
+                        <span class="text-danger" *ngIf="displayMessage.nome">
+                            <p [innerHTML]="displayMessage.nome"></p>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label">Documento</label>
+                    <div>
+                        <input class="form-control" id="documento" type="text" placeholder="requerido" [ngClass]="{'is-invalid': displayMessage.documento }" />
+
+                        <span class="text-danger" *ngIf="displayMessage.documento">
+                            <p [innerHTML]="displayMessage.documento"></p>
+                        </span>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="form-group col-md-6">
+                <div>
+                    <label class="control-label" for="TipoFornecedor">Tipo</label><br>
+                    <input type="radio" value="1" id="tipoFornecedor" formControlName="tipoFornecedor" name="tipoFornecedor"> Pessoa Física<br>
+                    <input type="radio" value="2" id="tipoFornecedor" formControlName="tipoFornecedor" name="tipoFornecedor"> Pessoa Jurídica
+                </div>
+                <div>
+                    &nbsp;
+                </div>
+                <div class="form-check">
+                    <label class="form-check-label">
+                        <input class="form-check-input" type="checkbox" id="ativo" formControlName="ativo" name="ativo" value="true"> Ativo?
+                    </label>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <input type="submit" value="Editar" class="btn btn-primary">&nbsp;
+            <a class="btn btn-info" [routerLink]="['/fornecedor/listar-todos']">Voltar</a>
+        </div>
+
+        <div>
+
+            <div style="padding-top: 20px">
+                <div>
+                    <hr>
+                    <h4>Endereço</h4>
+                </div>
+
+                <table class="table table-hover">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>
+                                Logradouro
+                            </th>
+                            <th>
+                                Numero
+                            </th>
+                            <th>
+                                Complemento
+                            </th>
+                            <th>
+                                Bairro
+                            </th>
+                            <th>
+                                Cep
+                            </th>
+                            <th>
+                                Cidade
+                            </th>
+                            <th>
+                                Estado
+                            </th>
+                            <th></th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <tr>
+                            <td>
+                                {{ fornecedor.endereco.logradouro }}
+                            </td>
+                            <td>
+                                {{ fornecedor.endereco.numero }}
+                            </td>
+                            <td>
+                                {{ fornecedor.endereco.complemento }}
+                            </td>
+                            <td>
+                                {{ fornecedor.endereco.bairro }}
+                            </td>
+                            <td>
+                                {{ fornecedor.endereco.cep }}
+                            </td>
+                            <td>
+                                {{ fornecedor.endereco.cidade }}
+                            </td>
+                            <td>
+                                {{ fornecedor.endereco.estado }}
+                            </td>
+                            <td>
+                                <a class="btn btn-info">
+                                    <span title="Editar" class="fa fa-pencil-alt"></span>
+                                </a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </form>
+</div>

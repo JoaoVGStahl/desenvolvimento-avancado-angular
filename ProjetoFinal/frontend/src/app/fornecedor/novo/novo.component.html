@@ -1,0 +1,165 @@
+<div class="container main-container">
+
+    <h1>Novo Fornecedor</h1>
+
+    <hr>
+    <div class="row">
+        <div class="col-md-10">
+            <form novalidate="novalidate" (ngSubmit)="adicionarFornecedor()" [formGroup]="fornecedorForm">
+
+                <div class="alert alert-danger" *ngIf="errors.length > 0">
+                    <h3 id="msgRetorno">Opa! Alguma coisa não deu certo:</h3>
+                    <ul>
+                        <li *ngFor="let error of errors">{{ error }}</li>
+                    </ul>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label">Nome</label>
+                    <div>
+                        <input class="form-control" id="nome" type="text" placeholder="Nome (requerido)" formControlName="nome" [ngClass]="{'is-invalid': displayMessage.nome }" />
+                        <span class="text-danger" *ngIf="displayMessage.nome">
+                            <p [innerHTML]="displayMessage.nome"></p>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label">Documento</label>
+                    <div>
+                        <input class="form-control" id="documento" type="text" placeholder="(requerido)" formControlName="documento" [ngClass]="{'is-invalid': displayMessage.documento }" />
+
+                        <span class="text-danger" *ngIf="displayMessage.documento">
+                            <p [innerHTML]="displayMessage.documento"></p>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label" for="TipoFornecedor">Tipo</label><br>
+                    <input type="radio" value="1" id="tipoFornecedor" formControlName="tipoFornecedor" name="tipoFornecedor"> Pessoa Física<br>
+                    <input type="radio" value="2" id="tipoFornecedor" formControlName="tipoFornecedor" name="tipoFornecedor"> Pessoa Jurídica
+                </div>
+
+                <div class="form-group form-check">
+                    <label class="form-check-label">
+                        <input class="form-check-input" type="checkbox" id="ativo" formControlName="ativo" name="ativo" value="true"> Ativo?
+                    </label>
+                </div>
+
+                <h4>Endereço</h4>
+                <hr>
+                <div formGroupName="endereco">
+                    <div class="form-group">
+                        <label class="control-label">CEP</label>
+                        <div>
+                            <input class="form-control" id="cep" type="text" placeholder="CEP (requerido)" formControlName="cep" [ngClass]="{ 'is-invalid': displayMessage.cep }" />
+                            <span class="text-danger" *ngIf="displayMessage.cep">
+                            <p [innerHTML]="displayMessage.cep"></p>
+                        </span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Logradouro</label>
+                        <div>
+                            <input class="form-control" id="logradouro" type="text" placeholder="Logradouro (requerido)" formControlName="logradouro" [ngClass]="{ 'is-invalid': displayMessage.logradouro }" />
+                            <span class="text-danger" *ngIf="displayMessage.logradouro">
+                            <p [innerHTML]="displayMessage.logradouro"></p>
+                        </span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Número</label>
+                        <div>
+                            <input class="form-control" id="numero" type="text" placeholder="Número (requerido)" formControlName="numero" [ngClass]="{ 'is-invalid': displayMessage.numero }" />
+                            <span class="text-danger" *ngIf="displayMessage.numero">
+                            <p [innerHTML]="displayMessage.numero"></p>
+                        </span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Complemento</label>
+                        <div>
+                            <input class="form-control" id="complemento" type="text" placeholder="Complemento" formControlName="complemento" [ngClass]="{ 'is-invalid': displayMessage.complemento }" />
+                            <span class="text-danger" *ngIf="displayMessage.complemento">
+                            <p [innerHTML]="displayMessage.complemento"></p>
+                        </span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Bairro</label>
+                        <div>
+                            <input class="form-control" id="bairro" type="text" placeholder="Bairro (requerido)" formControlName="bairro" [ngClass]="{ 'is-invalid': displayMessage.bairro }" />
+                            <span class="text-danger" *ngIf="displayMessage.bairro">
+                            <p [innerHTML]="displayMessage.bairro"></p>
+                        </span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Cidade</label>
+                        <div>
+                            <input class="form-control" id="cidade" type="text" placeholder="Cidade (requerido)" formControlName="cidade" [ngClass]="{ 'is-invalid': displayMessage.cidade }" />
+                            <span class="text-danger" *ngIf="displayMessage.cidade">
+                            <p [innerHTML]="displayMessage.cidade"></p>
+                        </span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Estado</label>
+                        <div>
+                            <select class="form-control" id="estado" formControlName="estado" [ngClass]="{ 'is-invalid': displayMessage.estado }">
+                                <option value="">Estado</option>
+                                <option value="AC">Acre</option>
+                                <option value="AL">Alagoas</option>
+                                <option value="AP">Amapá</option>
+                                <option value="AM">Amazonas</option>
+                                <option value="BA">Bahia</option>
+                                <option value="CE">Ceará</option>
+                                <option value="DF">Distrito Federal</option>
+                                <option value="ES">Espírito Santo</option>
+                                <option value="GO">Goiás</option>
+                                <option value="MA">Maranhão</option>
+                                <option value="MT">Mato Grosso</option>
+                                <option value="MS">Mato Grosso do Sul</option>
+                                <option value="MG">Minas Gerais</option>
+                                <option value="PA">Pará</option>
+                                <option value="PB">Paraíba</option>
+                                <option value="PR">Paraná</option>
+                                <option value="PE">Pernambuco</option>
+                                <option value="PI">Piauí</option>
+                                <option value="RJ">Rio de Janeiro</option>
+                                <option value="RN">Rio Grande do Norte</option>
+                                <option value="RS">Rio Grande do Sul</option>
+                                <option value="RO">Rondônia</option>
+                                <option value="RR">Roraima</option>
+                                <option value="SC">Santa Catarina</option>
+                                <option value="SP">São Paulo</option>
+                                <option value="SE">Sergipe</option>
+                                <option value="TO">Tocantins</option>
+                              </select>
+                            <span class="text-danger" *ngIf="displayMessage.estado">
+                            <p [innerHTML]="displayMessage.estado"></p>
+                        </span>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    <input type="submit" value="Cadastrar" class="btn btn-primary">&nbsp;
+                    <a class="btn btn-info" [routerLink]="['/fornecedor/listar-todos']" >Voltar</a>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-4 col-md-offset-2">
+                        <p>Formulario valido: {{ fornecedorForm.valid }}</p>
+                        <p>Formulario Tocado: {{ fornecedorForm.touched }}</p>
+                        <p>Formulario Sujo: {{ fornecedorForm.dirty }}</p><br>
+                        <p>Formulario: {{ formResult }}</p>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>
