@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
-  selector: 'app-cadastro',
+  selector: 'app-cadastro', 
   templateUrl: './cadastro.component.html'
 })
 export class CadastroComponent implements OnInit, AfterViewInit {
@@ -99,7 +99,7 @@ export class CadastroComponent implements OnInit, AfterViewInit {
   }
   processarFalha(fail : any){
     this.errors = fail.error.errors;
-    this.toastr.error('Ocorreu um erro!', 'Opá! :(');
+    this.toastr.error('Ocorreu um erro!', 'Opa! :(');
   }
 
 }
