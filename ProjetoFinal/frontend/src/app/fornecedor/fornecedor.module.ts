@@ -33,8 +33,8 @@ import { NgxSpinnerModule } from "ngx-spinner";
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    NgBrazil,
     TextMaskModule,
+    NgBrazil,
     NgxSpinnerModule
   ],
   providers: [

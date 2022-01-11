@@ -29,7 +29,9 @@ export class FornecedorService extends BaseService {
     }
 
     obterPorId(id: string): Observable<Fornecedor> {
-        return new Observable<Fornecedor>();
+        
+        return this.http.get<Fornecedor>(`${this.urlServiceV1}/Fornecedores/${id}`, this.ObterAuthHeaderJson())
+        .pipe(catchError(super.serviceError));
     }
 
     novoFornecedor(fornecedor: Fornecedor): Observable<Fornecedor> {
@@ -50,7 +52,12 @@ export class FornecedorService extends BaseService {
     }
 
     excluirFornecedor(id: string): Observable<Fornecedor> {
-        return new Observable<Fornecedor>();
+        return this.http
+        .delete(`${this.urlServiceV1}/Fornecedores/${id}`, super.ObterAuthHeaderJson())
+        .pipe(
+            map(super.extractData),
+            catchError(super.serviceError)
+        );
     }
 
     consultaCep(cep: string): Observable<CepConsulta> {

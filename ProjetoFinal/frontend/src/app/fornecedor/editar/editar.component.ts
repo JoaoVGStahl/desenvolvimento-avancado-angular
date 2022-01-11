@@ -32,6 +32,7 @@ export class EditarComponent implements OnInit {
   fornecedor: Fornecedor = new Fornecedor();
   endereco: Endereco = new Endereco();
 
+  
   validationMessages: ValidationMessages;
   genericValidator: GenericValidator;
   displayMessage: DisplayMessage = {};
@@ -83,12 +84,13 @@ export class EditarComponent implements OnInit {
 
     this.fornecedor = this.route.snapshot.data['fornecedor'];
     this.tipoFornecedor = this.fornecedor.tipoFornecedor;
+    
   }
 
   ngOnInit() {
     
     this.spinnerService.show();
-
+    
     this.fornecedorForm = this.fb.group({
       id: '',
       nome: ['', [Validators.required]],
@@ -96,6 +98,7 @@ export class EditarComponent implements OnInit {
       ativo: ['', [Validators.required]],
       tipoFornecedor: ['', [Validators.required]]
     });
+    
 
     this.enderecoForm = this.fb.group({
       id: '',
@@ -117,7 +120,7 @@ export class EditarComponent implements OnInit {
   }
 
   preencherForm() {
-
+    
     this.fornecedorForm.patchValue({
       id: this.fornecedor.id,
       nome: this.fornecedor.nome,

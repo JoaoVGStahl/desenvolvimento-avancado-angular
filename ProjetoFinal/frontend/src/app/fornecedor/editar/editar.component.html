@@ -1,8 +1,9 @@
 <div class="container main-container">
+
     <ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#fff" type="pacman" [fullScreen]="true">
         <p style="color: white"> Processando... </p>
     </ngx-spinner>
-    
+
     <h1>Editar Fornecedor</h1>
     <hr>
     <form novalidate="novalidate" (ngSubmit)="editarFornecedor()" [formGroup]="fornecedorForm">
@@ -33,7 +34,8 @@
                 <div class="form-group">
                     <label class="control-label">Documento</label>
                     <div>
-                        <input class="form-control" id="documento" type="text" placeholder="requerido" [ngClass]="{'is-invalid': displayMessage.documento }" />
+                        <input class="form-control" id="documento" type="text" placeholder="{{ textoDocumento }}" formControlName="documento" [textMask]="tipoFornecedorForm().value === '1' ? {mask: MASKS.cpf.textMask} : {mask: MASKS.cnpj.textMask}" [ngClass]="{'is-invalid': displayMessage.documento }"
+                        />
 
                         <span class="text-danger" *ngIf="displayMessage.documento">
                             <p [innerHTML]="displayMessage.documento"></p>
@@ -117,7 +119,7 @@
                                 {{ fornecedor.endereco.bairro }}
                             </td>
                             <td>
-                                {{ fornecedor.endereco.cep }}
+                                {{ fornecedor.endereco.cep  }}
                             </td>
                             <td>
                                 {{ fornecedor.endereco.cidade }}
@@ -136,6 +138,7 @@
             </div>
         </div>
     </form>
+
     <ng-template #content let-c="close" let-d="dismiss">
         <div class="modal-header">
             <h4 class="modal-title" id="modal-basic-title">Atualizar Endereço</h4>
