@@ -11,6 +11,8 @@ import { utilsBr } from 'js-brasil'
 import { ValidationMessages, GenericValidator, DisplayMessage } from 'src/app/utils/generic-form-validation';
 import { Fornecedor } from '../models/fornecedor';
 import { FornecedorService } from '../services/fornecedor.service';
+import { CepConsulta } from '../models/endereco';
+import { StringUtils } from 'src/app/utils/string-utils';
 
 
 
@@ -61,7 +63,7 @@ export class NovoComponent implements OnInit {
       },
       cep: {
         required: 'Informe o CEP',
-        cep : 'CEP em formato inválido',
+        cep: 'CEP em formato inválido',
       },
       cidade: {
         required: 'Informe a Cidade',
@@ -147,6 +149,9 @@ export class NovoComponent implements OnInit {
       this.fornecedor = Object.assign({}, this.fornecedor, this.fornecedorForm.value);
       this.formResult = JSON.stringify(this.fornecedor);
 
+      this.fornecedor.endereco.cep = StringUtils.somenteNumeros(this.fornecedor.endereco.cep);
+      this.fornecedor.documento = StringUtils.somenteNumeros(this.fornecedor.documento);
+
       this.fornecedorService.novoFornecedor(this.fornecedor)
         .subscribe(
           sucesso => { this.processarSucesso(sucesso) },
@@ -164,7 +169,7 @@ export class NovoComponent implements OnInit {
     let toast = this.toastr.success('Fornecedor cadastrado com sucesso!', 'Sucesso!');
     if (toast) {
       toast.onHidden.subscribe(() => {
-        this.router.navigate(['/fornecedores/listar-todos']);
+        this.router.navigate(['/fornecedor/listar-todos']);
       });
     }
   }
@@ -172,5 +177,28 @@ export class NovoComponent implements OnInit {
   processarFalha(fail: any) {
     this.errors = fail.error.errors;
     this.toastr.error('Ocorreu um erro!', 'Opa :(');
+  }
+
+  buscaCep(cep: string) {
+
+    cep = StringUtils.somenteNumeros(cep);
+    if(cep.length < 8) return;
+
+    this.fornecedorService.consultaCep(cep)
+      .subscribe(
+        cepRetorno => this.preencherEnderecoConsulta(cepRetorno),
+        erro => this.errors.push(erro)
+      );
+  }
+  preencherEnderecoConsulta(cepConsulta: CepConsulta) {
+    this.fornecedorForm.patchValue({
+      endereco: {
+        cep : cepConsulta.cep,
+        logradouro: cepConsulta.logradouro,
+        bairro : cepConsulta.bairro,
+        cidade : cepConsulta.localidade,
+        estado : cepConsulta.uf
+      }
+    })
   }
 }

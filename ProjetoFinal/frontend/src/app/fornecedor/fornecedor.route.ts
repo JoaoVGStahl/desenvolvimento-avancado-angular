@@ -7,6 +7,7 @@ import { ListaComponent } from './lista/lista.component';
 import { EditarComponent } from './editar/editar.component';
 import { DetalhesComponent } from './detalhes/detalhes.component';
 import { ExcluirComponent } from './excluir/excluir.component';
+import { FornecedorResolve } from './services/fornecedor.resolve';
 
 const fornecedorRouterConfig: Routes = [
     {
@@ -14,9 +15,24 @@ const fornecedorRouterConfig: Routes = [
         children: [
             { path: 'listar-todos', component: ListaComponent },
             { path: 'adicionar-novo', component: NovoComponent },
-            { path: 'editar/:id', component: EditarComponent },
-            { path: 'detalhes/:id', component: DetalhesComponent },
-            { path: 'excluir/:id', component: ExcluirComponent }
+            {
+                path: 'editar/:id', component: EditarComponent,
+                resolve: {
+                    fornecedor: FornecedorResolve
+                }
+            },
+            {
+                path: 'detalhes/:id', component: DetalhesComponent,
+                resolve: {
+                    fornecedor: FornecedorResolve
+                }
+            },
+            {
+                path: 'excluir/:id', component: ExcluirComponent,
+                resolve: {
+                    fornecedor: FornecedorResolve
+                }
+            }
         ]
     }
 ];
