@@ -6,6 +6,7 @@ import { ContaService } from '../services/conta.service';
 import { CustomValidators } from 'ngx-custom-validators';
 import { fromEvent, merge, Observable } from 'rxjs';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-cadastro',
@@ -27,7 +28,8 @@ export class CadastroComponent implements OnInit, AfterViewInit {
   constructor(
     private fb: FormBuilder,
     private contaService: ContaService,
-    private router: Router) {
+    private router: Router,
+    private toastr: ToastrService) {
     this.validationMessage = {
       email: {
         required: 'Informe o Email',
@@ -83,10 +85,17 @@ export class CadastroComponent implements OnInit, AfterViewInit {
 
     this.contaService.LocalStorage.salvarDadosLocaisUsuario(response);
 
-    this.router.navigate(['/home']);
+    let toast = this.toastr.success('Cadastro realizado com sucesso!','Bem-vindo!');
+    if(toast){
+      toast.onHidden.subscribe(() => {
+        this.router.navigate(['/home']);
+      })
+    }
+    
   }
   processarFalha(fail : any){
     this.errors = fail.error.errors;
+    this.toastr.error('Ocorreu um erro!', 'Opá! :(');
   }
 
 }
