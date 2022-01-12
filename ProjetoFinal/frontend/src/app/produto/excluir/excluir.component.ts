@@ -14,7 +14,7 @@ import { environment } from 'src/environments/environment';
 export class ExcluirComponent  {
 
   produto: Produto;
-
+  imagens: string = environment.imagensUrl;
   constructor(private produtoService: ProdutoService,
     private route: ActivatedRoute,
     private router: Router,

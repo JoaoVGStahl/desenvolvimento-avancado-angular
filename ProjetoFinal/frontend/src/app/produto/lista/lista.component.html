@@ -31,7 +31,7 @@
         <tbody>
             <tr *ngFor="let produto of produtos">
                 <td>
-                    <img src="{{ produto.imagem }}" style="width: 70px; height: 100px">
+                    <img src="{{imagens}}{{ produto.imagem }}" style="width: 70px; height: 100px">
                 </td>
                 <td>
                     {{ produto.nome }}
@@ -40,7 +40,7 @@
                     {{ produto.nomeFornecedor }}
                 </td>
                 <td>
-                    {{ produto.valor | currencyBrazil }}
+                    {{ produto.valor}}
                 </td>
                 <td>
                     <input [checked]="produto.ativo" class="check-box" disabled="disabled" type="checkbox">

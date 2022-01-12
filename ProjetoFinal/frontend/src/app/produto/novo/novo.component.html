@@ -53,15 +53,15 @@
                     <label class="control-label">Imagem do Produto</label>
 
                     <div class="custom-file">
-                        <input type="file" class="custom-file-input" id="imagem" (change)="fileChangeEvent($event)" formControlName="imagem"
-                            [ngClass]="{'is-invalid': displayMessage.imagem }">
+                        <input type="file" class="custom-file-input" id="imagem" (change)="fileChangeEvent($event)"
+                            formControlName="imagem" [ngClass]="{'is-invalid': displayMessage.imagem }">
                         <label data-browse="Procurar" style="width: 400px" class="custom-file-label"></label>
-
+                        <span><br>{{imagemNome}}<br></span>
                         <span class="text-danger" *ngIf="displayMessage.imagem">
                             <p [innerHTML]="displayMessage.imagem"></p>
                         </span>
                     </div>
-                    <div>
+                    <div *ngIf="imagemNome" class="row">
                         <div class="col col-md-6">
                             <image-cropper [imageChangedEvent]="imageChangedEvent" [maintainAspectRatio]="false"
                                 [containWithinAspectRatio]="containWithinAspectRatio" [aspectRatio]="4 / 3"
