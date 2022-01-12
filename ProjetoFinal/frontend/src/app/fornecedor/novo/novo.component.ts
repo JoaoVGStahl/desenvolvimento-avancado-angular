@@ -165,6 +165,7 @@ export class NovoComponent implements OnInit {
   processarSucesso(response: any) {
     this.fornecedorForm.reset();
     this.errors = [];
+    this.mudancasNaoSalvas = false;
 
     let toast = this.toastr.success('Fornecedor cadastrado com sucesso!', 'Sucesso!');
     if (toast) {
@@ -174,7 +175,7 @@ export class NovoComponent implements OnInit {
     }
   }
 
-  processarFalha(fail: any) {
+  processarFalha(fail) {
     this.errors = fail.error.errors;
     this.toastr.error('Ocorreu um erro!', 'Opa :(');
   }
