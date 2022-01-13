@@ -29,7 +29,9 @@
             </iframe>
         </div>
     </div>
-
+    <div *ngIf="fornecedor.produtos.length > 0">
+        <lista-produto [produtos]="fornecedor.produtos"></lista-produto>
+    </div>
     <div>
         <a class="btn btn-dark" [routerLink]="['/fornecedor/editar',fornecedor.id]">Editar</a>&nbsp;
         <a class="btn btn-info" [routerLink]="['/fornecedor/listar-todos']">Voltar</a>
