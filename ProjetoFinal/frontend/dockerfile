@@ -1,0 +1,21 @@
+### Multi Stage Build ###
+
+### Estágio 1 => Obter o Source e gera ro build ###
+
+FROM node:latest AS ng-builder
+RUN mkdir -p /app
+WORKDIR /app
+COPY  package.json /app
+RUN npm install
+COPY . /app
+RUN $(npm bin)/ng build --prod
+##3 Estágio 2 => subir o source para o servidor NGINX com o app Angular ###
+FROM nginx
+COPY nginx.conf /etc/nginx/nginx.conf
+COPY --from=ng-builder /app/dist/front-end /usr/share/nginx/html
+
+EXPOSE 80
+
+## docker build -t meusprodutosangular .
+### docker run --name < nome container > -d -p 8080:80 <nome container>
+
