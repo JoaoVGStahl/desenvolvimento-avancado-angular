@@ -5,7 +5,7 @@ import { Usuario } from '../models/usuario';
 import { ContaService } from '../services/conta.service';
 import { CustomValidators } from 'ngx-custom-validators';
 import { fromEvent, merge, Observable } from 'rxjs';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-login',
@@ -19,6 +19,7 @@ export class LoginComponent implements OnInit {
 
   loginForm: FormGroup;
   usuario: Usuario;
+  returnUrl: string;
 
   validationMessage: ValidationMessages;
   genericValidator: GenericValidator;
@@ -28,6 +29,7 @@ export class LoginComponent implements OnInit {
     private fb: FormBuilder,
     private contaService: ContaService,
     private router: Router,
+    private route: ActivatedRoute,
     private toastr: ToastrService) {
     this.validationMessage = {
       email: {
@@ -39,7 +41,7 @@ export class LoginComponent implements OnInit {
         rangeLength: 'A senha deve possuir entre 8 e 100 caracteres'
       }
     };
-
+    this.returnUrl = this.route.snapshot.queryParams['returnUrl'];
     this.genericValidator = new GenericValidator(this.validationMessage);
   }
   ngAfterViewInit(): void {
@@ -78,7 +80,9 @@ export class LoginComponent implements OnInit {
     let toast = this.toastr.success('Login realizado com sucesso!', 'Bem-vindo!');
     if (toast) {
       toast.onHidden.subscribe(() => {
-        this.router.navigate(['/home']);
+        this.returnUrl 
+        ? this.router.navigate([this.returnUrl]) 
+        : this.router.navigate(['/home']);
       })
     }
 
