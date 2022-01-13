@@ -4,7 +4,7 @@ export interface Produto {
   descricao: string,
   imagem: string,
   imagemUpload: string;
-  valor: number,
+  valor: string;
   dataCadastro: string,
   ativo: true,
   fornecedorId: string,

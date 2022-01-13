@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
   apiUrv1 : 'https://minhaapi.azurewebsites.net/api/v1',
-  imagensUrl : 'https://minhaapi.azurewebsites.net/'
+  imagensUrl : 'https://minhaapi.azurewebsites.net/Produtos/Imagens/'
 };
 
 /*

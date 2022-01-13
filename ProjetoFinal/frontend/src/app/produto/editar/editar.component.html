@@ -16,8 +16,10 @@
 
                 <div class="form-group">
                     <label class="control-label">Fornecedor</label>
-                    <select class="form-control" id="fornecedorId" formControlName="fornecedorId" [ngClass]="{'is-invalid': displayMessage.fornecedorId }">
-                        <option *ngFor="let fornecedor of fornecedores" value="{{ fornecedor.id }}">{{ fornecedor.nome }}</option>
+                    <select class="form-control" id="fornecedorId" formControlName="fornecedorId"
+                        [ngClass]="{'is-invalid': displayMessage.fornecedorId }">
+                        <option *ngFor="let fornecedor of fornecedores" value="{{ fornecedor.id }}">{{ fornecedor.nome
+                            }}</option>
                     </select>
                     <span class="text-danger" *ngIf="displayMessage.fornecedorId">
                         <p [innerHTML]="displayMessage.fornecedorId"></p>
@@ -27,7 +29,8 @@
                 <div class="form-group">
                     <label class="control-label">Nome</label>
                     <div>
-                        <input class="form-control" id="nome" type="text" placeholder="Nome (requerido)" formControlName="nome" [ngClass]="{'is-invalid': displayMessage.nome }" />
+                        <input class="form-control" id="nome" type="text" placeholder="Nome (requerido)"
+                            formControlName="nome" [ngClass]="{'is-invalid': displayMessage.nome }" />
                         <span class="text-danger" *ngIf="displayMessage.nome">
                             <p [innerHTML]="displayMessage.nome"></p>
                         </span>
@@ -37,18 +40,31 @@
                 <div class="form-group">
                     <label class="control-label">Descrição</label>
                     <div>
-                        <textarea cols="40" rows="5" maxlength="1000" class="form-control" id="descricao" placeholder="Descrição (requerido)" formControlName="descricao" [ngClass]="{'is-invalid': displayMessage.descricao }"></textarea>
+                        <textarea cols="40" rows="5" maxlength="1000" class="form-control" id="descricao"
+                            placeholder="Descrição (requerido)" formControlName="descricao"
+                            [ngClass]="{'is-invalid': displayMessage.descricao }"></textarea>
                         <span class="text-danger" *ngIf="displayMessage.descricao">
                             <p [innerHTML]="displayMessage.descricao"></p>
                         </span>
                     </div>
                 </div>
 
+                <div *ngIf="!imagemPreview" class="form-group">
+                    <label>Imagem Atual</label><br>
+                    <img [src]="imagemOriginalSrc" style="width: 150px; height: 100px">
+                </div>
+                <div *ngIf="imagemPreview" class="form-group">
+                    <label>Nova Imagem</label><br>
+                    <img [src]="imagemPreview" style="width: 150px; height: 100px" />
+                </div>
+
                 <div class="form-group">
                     <label class="control-label">Imagem do Produto</label>
 
                     <div class="custom-file">
-                        <input type="file" class="custom-file-input" id="imagem" formControlName="imagem" [ngClass]="{'is-invalid': displayMessage.imagem }">
+                        <input type="file" accept="image/jpeg,image/png" class="custom-file-input" id="imagem"
+                            formControlName="imagem" #fileInput (change)="upload(fileInput.files)"
+                            [ngClass]="{'is-invalid': displayMessage.imagem }">
                         <label data-browse="Procurar" style="width: 400px" class="custom-file-label"></label>
                         <span class="text-danger" *ngIf="displayMessage.imagem">
                             <p [innerHTML]="displayMessage.imagem"></p>
@@ -59,7 +75,9 @@
                 <div class="form-group">
                     <label class="control-label">Valor</label>
                     <div>
-                        <input class="form-control" id="valor" type="text" placeholder="Valor (requerido)" formControlName="valor" [textMask]="{mask: MASKS.number.textMask}" [ngClass]="{'is-invalid': displayMessage.valor }" />
+                        <input class="form-control" id="valor" type="text" placeholder="Valor (requerido)"
+                            formControlName="valor" [textMask]="{mask: MASKS.number.textMask}"
+                            [ngClass]="{'is-invalid': displayMessage.valor }" />
                         <span class="text-danger" *ngIf="displayMessage.valor">
                             <p [innerHTML]="displayMessage.valor"></p>
                         </span>
@@ -68,7 +86,8 @@
 
                 <div class="form-group form-check">
                     <label class="form-check-label">
-                        <input class="form-check-input" type="checkbox" id="ativo" formControlName="ativo" name="ativo" value="true"> Ativo?
+                        <input class="form-check-input" type="checkbox" id="ativo" formControlName="ativo" name="ativo"
+                            value="true"> Ativo?
                     </label>
                 </div>
 
