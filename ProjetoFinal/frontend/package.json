@@ -23,6 +23,7 @@
     "@ng-bootstrap/ng-bootstrap": "^6.0.2",
     "angular2-text-mask": "^9.0.0",
     "install": "^0.13.0",
+    "jasmine": "^4.0.2",
     "js-brasil": "^2.5.1",
     "ng-brazil": "^2.4.5",
     "ngx-custom-validators": "^9.1.0",

@@ -34,10 +34,10 @@ export abstract class AppBasePage {
 
     login(){
         this.navegarPorLink('Entrar');
-        this.email.sendKeys('teste@teste.com');
-        this.senha.sendKeys('Teste@123');
+        this.email.sendKeys('teste@Jdev.com');
+        this.senha.sendKeys('@Teste123');
 
-        element(by.id('Login')).click();
+        element(by.id('login')).click();
         this.esperar(6000);
     }
 }
